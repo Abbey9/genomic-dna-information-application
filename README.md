@@ -1,4 +1,4 @@
-# genomic-dna-information-application
+# genomic-dna-information-app
 
 Genetic information in DNA is stored as a long list of strings called Genomic Strings over four letter alphabets A, T, C, G which corresponds to four DNA bases which are as  follows:
 1) Adenine (A)
