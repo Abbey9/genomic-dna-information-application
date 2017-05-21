@@ -1,5 +1,5 @@
 package org.genednaapp;
 
-public class GenomicInfo {
+public class GenomicData {
 
 }
