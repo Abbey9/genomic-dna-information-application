@@ -32,5 +32,58 @@ public class GenomicData {
 
 	}
 
-	
+	/* Method findGene with one String parameter DNA to return the gene found between startCodon and stopCodons. 
+	 * If there is no stopCodon or startCodon, this method returns empty gene string.
+	 */
+	public String findGene(String dna) {
+
+		// finding first occurrence of start Codon ATG
+		int startIndex = dna.indexOf("ATG");
+
+		// if no ATG found, returns empty strings
+		if (startIndex == -1) {
+			return "";
+		}
+
+		// finding occurrences all three stopCodons TAA, TAG, TGA index by calling findStopCodon method
+		int taaIndex = findStopCodon(dna, startIndex, "TAA");
+		int tagIndex = findStopCodon(dna, startIndex, "TAG");
+		int tgaIndex = findStopCodon(dna, startIndex, "TGA");
+
+		// finding minIndex by finding smallest of taaIndex, tgaIndex and tagIndex
+
+		int minIndex = 0;
+
+		/*if stopCodon TAA or TGA not found and if TGA index is less than
+		 * TAA index, assign minIndex the value of TGA Index else TAA Index
+		*/
+		if ((taaIndex == -1) || (tgaIndex != -1 && tgaIndex < taaIndex)) {
+
+			minIndex = tgaIndex;
+
+		} else {
+
+			minIndex = taaIndex;
+		}
+
+		/*if minimum of TAA AND TGA Index is greater than TAG Index or TAG Index
+		 * is not found, assign minIndex the value of TAG Index
+		 */
+		if (minIndex == -1 || (tagIndex != -1 && tagIndex < minIndex)) {
+
+			minIndex = tagIndex;
+		}
+
+		/*if smallest of three StopCodon's index is equal to length of Dna,
+		 * return empty string
+		 */
+		if (minIndex == dna.length()) {
+
+			return " ";
+		}
+
+		//returns the gene found in dna string between startCodon's index and stopCodon's index
+		return dna.substring(startIndex, minIndex + 3);
+
+	}
 }
