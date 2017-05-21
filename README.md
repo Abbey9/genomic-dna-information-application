@@ -1,0 +1,2 @@
+# genomic-information-in-dna
+A  simple Java Application to identify genomic information of all the genes from a DNA string stored in a plain text file. The library edu.duke is a dependency for the class to work, it should be added into the Java IDE to compile with no errors. Download link :  http://www.dukelearntoprogram.com/downloads/archives/courserajava.jar and http://www.dukelearntoprogram.com/downloads/archives/apache-csv.jar .
