@@ -97,7 +97,7 @@ public class GenomicData {
 
 		// returns the gene found in dna string between startCodon's index and
 		// stopCodon's index
-		return "Gene found:" + dna.substring(startIndex, minIndex + 3);
+		return dna.substring(startIndex, minIndex + 3);
 
 	}
 
@@ -126,7 +126,7 @@ public class GenomicData {
 				break;
 			}
 
-			// System.out.println("Current Gene:" + currentGene);
+			System.out.println("Gene Found:" + currentGene);
 
 			// adding string value of gene found in plain file named
 			// dnastrand.txt to the StorageResource empty geneList
@@ -139,8 +139,13 @@ public class GenomicData {
 			// counting genes found
 			countGenes = countGenes + 1;
 		}
-		System.out.println(" All Genes stored Successfully");
-		System.out.println("Total No. of Genes:" + countGenes);
+		
+		System.out.println("**********************************************************************************");
+		
+		System.out.println("Total No. of Genes in DNA Strand:" + countGenes);
+		
+		System.out.println("**********************************************************************************");
+		
 		return geneList;
 	}
 
@@ -201,23 +206,25 @@ public class GenomicData {
 
 		for (String s : sr.data()) {
 
-			System.out.println("Length of Genes found:" + s.length());
-			System.out.println("C-G Ratio of Genes found:" + cgRatioCalculation(s));
-
 			if (s.length() > 60) {
-				System.out.println("String longer than 60 characters: " + s);
+				System.out.println("Gene longer than 60 characters: " + s);
 				sixtyCharQty++;
 			}
 
 			if (cgRatioCalculation(s) > cgRatioConst) {
-				System.out.println("String with C-G-ratio higher than 0.35: " + s);
+				System.out.println("Gene with C-G-ratio higher than 0.35: " + s);
 				highCgRatioQty++;
 			}
 
 		}
-
-		System.out.println("String with length more than 60 characters: " + sixtyCharQty);
-		System.out.println("Strings with C-G-ratio higher than 0.35: " + highCgRatioQty);
+		
+		System.out.println("**********************************************************************************");
+		
+		System.out.println("Total number of Genes with length more than 60 characters: " + sixtyCharQty);
+		
+		System.out.println("**********************************************************************************");
+		
+		System.out.println("Total number of Genes with C-G-ratio higher than 0.35: " + highCgRatioQty);
 
 	}
 	
@@ -252,14 +259,30 @@ public class GenomicData {
 		// calling getAllGenes method to store all genes in DNA strand
 		StorageResource genes = getAllGenes(dna);
 		
-		
 		for (String g : genes.data()) {
-			System.out.println("Storing genes in Storage Resource" + g);
+			
+			System.out.println("**********************************************************************************");
+			
+			System.out.println("Storing gene in Storage Resource: " + g);
+			System.out.println("Length of Gene found:" + g.length());
+			System.out.println("C-G Ratio of Gene found:" + cgRatioCalculation(g));
+			
+			System.out.println("**********************************************************************************");
+			
+				
 		}
+        System.out.println("**********************************************************************************");
+		
+		System.out.println(" All Genes stored Successfully");
+		
+		System.out.println("**********************************************************************************");
+		
 		
 		// calling method printGenesInfo to print gemomic information
 		printGenesInfo(genes);
 		
+		
+		System.out.println("**********************************************************************************");
 		
 		// Calling method occurenceOfCodon to find out occurrences of Codon
 		String codon = "ATG";
@@ -292,3 +315,4 @@ public class GenomicData {
 	}
 	
 }
+
