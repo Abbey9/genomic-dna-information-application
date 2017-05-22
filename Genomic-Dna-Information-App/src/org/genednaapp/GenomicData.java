@@ -193,7 +193,7 @@ public class GenomicData {
 	 * 
 	 * */
 	
-	public void printGenes(StorageResource sr) {
+	public void printGenesInfo(StorageResource sr) {
 
 		int sixtyCharQty = 0;
 		int highCgRatioQty = 0;
@@ -220,4 +220,6 @@ public class GenomicData {
 		System.out.println("Strings with C-G-ratio higher than 0.35: " + highCgRatioQty);
 
 	}
+	
+	
 }
