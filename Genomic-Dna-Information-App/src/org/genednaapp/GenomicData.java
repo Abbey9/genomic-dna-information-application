@@ -4,7 +4,7 @@ import edu.duke.StorageResource;
 
 public class GenomicData {
   
-	/*This method findStop with three parameters returns the index of the first occurrence of stopCodon 
+	/* This method findStop with three parameters returns the index of the first occurrence of stopCodon 
 	 * that appears past startIndex and is a multiple of 3 away from startIndex. 
 	 * If there is no such stopCodon,this method returns -1.
 	 */
@@ -89,9 +89,9 @@ public class GenomicData {
 
 	}
 	
-	/*Method getAllGenes with String parameter DNA to store all genes using edu.duke custom class StorageResource
+	/* Method getAllGenes with String parameter DNA to store all genes using edu.duke custom class StorageResource
 	 * which returns stored genes which are found in DNA contained in a file
-	 *It also counts total no.of genes found in DNA Strand.
+	 * It also counts and returns total no.of genes found in DNA Strand.
 	 */
 	
 	public StorageResource getAllGenes(String  dna) {
@@ -118,7 +118,7 @@ public class GenomicData {
             //adding string value of gene found in plain file named dnastrand.txt to the StorageResource empty list
 			geneList.add(currentGene);
 
-			//updating startIndex and set it to just past end of gene found
+			//updating startIndex and set it to just past end of current gene or gene just found
 			startIndex = dna.indexOf(currentGene, startIndex) + currentGene.length();
 
 			//counting genes found
@@ -128,4 +128,46 @@ public class GenomicData {
 		System.out.println("Total No. of Genes:" + countGenes);
 		return geneList;
 	}
+	
+	/* Method cgRatio that has one String parameter dna, and returns the ratio of C’s and G’s 
+	 * in dna as a fraction of the entire strand of DNA
+	*/
+	public double cgRatioCalculation(String dna) {
+
+		int countC = 0;
+		int countG = 0;
+		int startIndex = 0;
+
+		double dnaLength = dna.length();
+
+		// Counting no.of C starting from startIndex
+		while (true) {
+			int currIndex = dna.indexOf("C", startIndex);
+			if (currIndex == -1) {
+				break;
+			}
+			countC += 1;
+			startIndex = currIndex + 1;
+		}
+		
+        // Counting no.of G starting from startIndex
+		while (true) {
+			int currIndex = dna.indexOf("G", startIndex);
+			if (currIndex == -1) {
+				break;
+			}
+			countG += 1;
+			startIndex = currIndex + 1;
+		}
+        
+		//calculating sum of C's and G's 
+		int sum=countC+countG;
+		
+		// calculating and returning cgRatio
+		return (double) (sum / dnaLength);
+
+	}
+	
+	
+
 }
