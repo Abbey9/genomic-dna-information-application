@@ -1,3 +1,8 @@
+/* 
+ * A simple java program to output genomic information all genes present in DNA Strand
+ * 
+ */
+
 package org.genednaapp;
 
 import edu.duke.FileResource;
