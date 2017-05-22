@@ -221,5 +221,30 @@ public class GenomicData {
 
 	}
 	
+	/* Method occurrenceOfCodons with two string parameters dna and codon returns 
+	 * number of times stopCodons and startCodon occurs in dna string
+	 */
+	
+	public int occurrenceOfCodons(String codon, String dna) {
+
+		int occurrences = 0;
+
+		// finding initial value of index of findCodonOccurrence in DNA String
+		int index = dna.indexOf(codon);
+
+		while (index != -1) {
+
+			// counts occurrences
+			occurrences = occurrences + 1;
+			// finds findCodonOccurrence in dna string
+			dna = dna.substring(index + 1);
+			// updates new index of new dna string value
+			index = dna.indexOf(codon);
+		}
+		
+		
+		return occurrences;
+
+	}
 	
 }
