@@ -167,7 +167,4 @@ public class GenomicData {
 		return (double) (sum / dnaLength);
 
 	}
-	
-	
-
 }
