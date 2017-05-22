@@ -94,7 +94,7 @@ public class GenomicData {
 	 *It also counts total no.of genes found in DNA Strand.
 	 */
 	
-	public StorageResource getAllGenes(String dna) {
+	public StorageResource getAllGenes(String  dna) {
 
 		//Created StorageResource object geneList, thus creating an empty list
 		StorageResource geneList = new StorageResource();
