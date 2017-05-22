@@ -4,7 +4,7 @@ public class GenomicData {
   
 	/*This method findStop with three parameters returns the index of the first occurrence of stopCodon 
 	 * that appears past startIndex and is a multiple of 3 away from startIndex. 
-	 * If there is no such stopCodon,this method returns the length of the dna strand.
+	 * If there is no such stopCodon,this method returns -1.
 	 */
 	
 	public int findStopCodon(String dnaStr, int startIndex, String stopCodon) {
