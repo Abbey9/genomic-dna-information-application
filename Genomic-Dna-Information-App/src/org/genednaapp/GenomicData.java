@@ -1,5 +1,7 @@
 package org.genednaapp;
 
+import edu.duke.StorageResource;
+
 public class GenomicData {
   
 	/*This method findStop with three parameters returns the index of the first occurrence of stopCodon 
@@ -32,13 +34,13 @@ public class GenomicData {
 
 	}
 
-	/* Method findGene with one String parameter DNA to return the gene found between startCodon and stopCodons. 
+	/* Method findGene with String parameter DNA to return the gene found between startCodon and stopCodons. 
 	 * If there is no stopCodon or startCodon, this method returns empty gene string.
 	 */
-	public String findGene(String dna) {
+	public String findGene(String dna, int where) {
 
 		// finding first occurrence of start Codon ATG
-		int startIndex = dna.indexOf("ATG");
+		int startIndex = dna.indexOf("ATG", where);
 
 		// if no ATG found, returns empty strings
 		if (startIndex == -1) {
@@ -83,7 +85,47 @@ public class GenomicData {
 		}
 
 		//returns the gene found in dna string between startCodon's index and stopCodon's index
-		return dna.substring(startIndex, minIndex + 3);
+		return "Gene found:"+dna.substring(startIndex, minIndex + 3);
 
+	}
+	
+	/*Method getAllGenes with String parameter DNA to store all genes using edu.duke custom class StorageResource
+	 * which returns stored genes which are found in DNA contained in a file
+	 *It also counts total no.of genes found in DNA Strand.
+	 */
+	
+	public StorageResource getAllGenes(String dna) {
+
+		//Created StorageResource object geneList, thus creating an empty list
+		StorageResource geneList = new StorageResource();
+
+		int startIndex = 0;
+
+		int countGenes = 0;
+
+		while (true) {
+
+			// finding gene using findGene method starting from startIndex
+			String currentGene = findGene(dna, startIndex);
+
+			if (currentGene.isEmpty()) {// if no gene found
+				System.out.println("No gene found");
+				break;
+			}
+
+			//System.out.println("Current Gene:" + currentGene);
+			
+            //adding string value of gene found in plain file named dnastrand.txt to the StorageResource empty list
+			geneList.add(currentGene);
+
+			//updating startIndex and set it to just past end of gene found
+			startIndex = dna.indexOf(currentGene, startIndex) + currentGene.length();
+
+			//counting genes found
+			countGenes = countGenes + 1;
+		}
+        System.out.println(" All Genes stored Successfully");
+		System.out.println("Total No. of Genes:" + countGenes);
+		return geneList;
 	}
 }
