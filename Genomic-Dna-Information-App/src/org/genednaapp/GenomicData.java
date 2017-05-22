@@ -1,5 +1,6 @@
 package org.genednaapp;
 
+import edu.duke.FileResource;
 import edu.duke.StorageResource;
 
 public class GenomicData {
@@ -101,10 +102,9 @@ public class GenomicData {
 	}
 
 	/*
-	 * Method getAllGenes with String parameter DNA to store all genes using
-	 * edu.duke custom class StorageResource which returns stored genes which
-	 * are found in DNA contained in a file It also counts and returns total
-	 * no.of genes found in DNA Strand.
+	 * Method getAllGenes with String parameter DNA to store all genes using edu.duke custom class StorageResource 
+	 * which returns stored genes which are found in DNA contained in a file. 
+	 * It also counts and returns total no.of genes found in DNA Strand.
 	 */
 
 	public StorageResource getAllGenes(String dna) {
@@ -244,6 +244,50 @@ public class GenomicData {
 		
 		
 		return occurrences;
+
+	}
+	
+	public void testFindAllGenes(String dna) {
+		
+		// calling getAllGenes method to store all genes in DNA strand
+		StorageResource genes = getAllGenes(dna);
+		
+		
+		for (String g : genes.data()) {
+			System.out.println("Storing genes in Storage Resource" + g);
+		}
+		
+		// calling method printGenesInfo to print gemomic information
+		printGenesInfo(genes);
+		
+		
+		// Calling method occurenceOfCodon to find out occurrences of Codon
+		String codon = "ATG";
+		int occurrences=occurrenceOfCodons(codon, dna);
+		System.out.println("Total no of start Codon ATG:"+occurrences);
+		
+		codon = "TAA";
+		occurrences=occurrenceOfCodons(codon, dna);
+		System.out.println("Total no of stop Codon TAA:"+occurrences);
+        
+		codon = "TAG";
+		occurrences=occurrenceOfCodons(codon, dna);
+		System.out.println("Total no of stop Codon TAG:"+occurrences);
+		
+		codon = "TGA";
+		occurrences=occurrenceOfCodons(codon, dna);
+		System.out.println("Total no of stop Codon TGA:"+occurrences);	
+	}
+
+	public void findAllGenesInFile() {
+		
+		// This class provides methods for accessing a file on your computer
+		FileResource fr = new FileResource("dnastrand.txt");
+		
+		String dna = fr.asString(); // returns the entire contents of this opened file as one String
+		
+		//calling testfindAllGenes method
+		testFindAllGenes(dna);
 
 	}
 	
